@@ -1,12 +1,11 @@
-// La bibliothèque avec des livres
-// La bibliothèque avec des livres
+
 let library = [
   { title: "Livre A", isAvailable: true },
   { title: "Livre B", isAvailable: true },
   { title: "Livre C", isAvailable: true },
 ];
 
-// Fonction pour afficher les livres disponibles
+
 function viewBooks() {
   console.log("Livres disponibles dans la bibliothèque :");
   for (let i = 0; i < library.length; i++) {
@@ -16,11 +15,11 @@ function viewBooks() {
   }
 }
 
-// Fonction pour emprunter un livre
+
 function borrowBook(bookTitle) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      let found = false; // On utilise une variable pour éviter array methods
+      let found = false; 
       for (let i = 0; i < library.length; i++) {
         if (library[i].title === bookTitle) {
           found = true;
@@ -36,11 +35,10 @@ function borrowBook(bookTitle) {
       if (!found) {
         reject(new Error(`${bookTitle} n'existe pas dans la bibliothèque.`));
       }
-    }, 1000); // Simule une tâche asynchrone avec un délai
+    }, 1000); 
   });
 }
 
-// Fonction pour rendre un livre
 function returnBook(bookTitle) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -60,22 +58,22 @@ function returnBook(bookTitle) {
       if (!found) {
         reject(new Error(`${bookTitle} n'existe pas dans la bibliothèque.`));
       }
-    }, 1000); // Simule une tâche asynchrone avec un délai
+    }, 2500); 
   });
 }
 
-// Exemple d'utilisation
+
 viewBooks();
 
 borrowBook("Livre A")
   .then((message) => {
     console.log(message);
-    viewBooks(); // Vérifie la liste des livres après l'emprunt
-    return returnBook("Livre A"); // Rend le livre
+    viewBooks(); 
+    return returnBook("Livre A");
   })
   .then((message) => {
     console.log(message);
-    viewBooks(); // Vérifie la liste des livres après le retour
+    viewBooks(); 
   })
   .catch((error) => {
     console.error("Erreur :", error.message);
