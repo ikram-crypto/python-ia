@@ -1,37 +1,18 @@
-async function fetchUserData() {
-    const apiURL = "https://jsonplaceholder.typicode.com/users";
-  
+async function showData() {
+    
     try {
       
-      const response = await fetch(apiURL);
-  
-      
-      console.log(`Status: ${response.status}`);
-      console.log(response.ok ? "Response is OK" : "Response is NOT OK");
-  
-     
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+      let response = await fetch('https://jsonplaceholder.typicode.com/users');
+      if (response.ok){
+        console.log(response.ok);
+        console.log(response.status);
+        let data = await response.json();
+        console.log(data);
       }
-  
-     
-      const data = await response.json();
-  
-      
-      return data;
-    } catch (error) {
-     
-      console.error("An error occurred while fetching data:", error.message);
-      return null;
     }
-  }
+    catch (e) {
+        console.log(`Error fetching Data From API Details : ${e.message}`);
+    }  
   
-  
-  fetchUserData().then((data) => {
-    if (data) {
-      console.log("Fetched Data:", data);
-    } else {
-      console.log("No data fetched due to an error.");
-    }
-  });
+} 
   
